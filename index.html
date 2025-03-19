@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="app-logo">
+                <i class="fas fa-heartbeat"></i>
+                <div class="logo-circle"></div>
+                <div class="logo-pulse"></div>
+            </div>
+            <h1>Health Habit Tracker</h1>
+            <p>Your daily companion for better health</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-logo">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <h1>Health Habit Tracker</h1>
+            <p>Track your daily health habits and get guidance from your AI Health Coach</p>
+        </header>
+
+        <!-- Daily Health Score Section -->
+        <div class="health-score-section">
+            <div class="score-card">
+                <h2>Today's Health Score</h2>
+                <div class="score-circle">
+                    <span id="health-score">0</span>
+                    <span class="score-label">/100</span>
+                </div>
+                <div class="score-details">
+                    <div class="score-item">
+                        <i class="fas fa-tint"></i>
+                        <span>Water: <span id="water-score">0</span>/30</span>
+                    </div>
+                    <div class="score-item">
+                        <i class="fas fa-tablets"></i>
+                        <span>Minerals: <span id="minerals-score">0</span>/30</span>
+                    </div>
+                    <div class="score-item">
+                        <i class="fas fa-capsules"></i>
+                        <span>Vitamins: <span id="vitamins-score">0</span>/40</span>
+                    </div>
+                </div>
+            </div>
+            <div class="achievement-badges">
+                <h2>Your Achievements</h2>
+                <div class="badges-container" id="badges-container">
+                    <!-- Badges will be added dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Tip of the Day -->
+        <div class="health-tip-section">
+            <h2>Health Tip of the Day</h2>
+            <div class="tip-card">
+                <i class="fas fa-lightbulb"></i>
+                <p id="daily-tip">Loading your personalized health tip...</p>
+            </div>
+        </div>
+
+        <!-- Progress Statistics -->
+        <div class="progress-stats-section">
+            <h2>Your Progress</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Streak</h3>
+                    <p id="current-streak">0 days</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Weekly Average</h3>
+                    <p id="weekly-average">0%</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Best Day</h3>
+                    <p id="best-day">0%</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Achievements</h3>
+                    <p id="achievement-count">0/10</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Health Report -->
+        <div class="weekly-report-section">
+            <h2>Weekly Health Report</h2>
+            <div class="report-card">
+                <div class="report-header">
+                    <button id="prev-week" class="nav-button"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="week-range">Week of <span id="week-start">Loading...</span></h3>
+                    <button id="next-week" class="nav-button"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="report-chart" id="weekly-chart">
+                    <!-- Chart will be added dynamically -->
+                </div>
+                <div class="report-summary">
+                    <div class="summary-item">
+                        <span>Most Improved:</span>
+                        <span id="most-improved">Loading...</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Areas to Focus:</span>
+                        <span id="areas-to-focus">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="habit-boxes">
+            <div class="habit-box" id="water-box">
+                <div class="habit-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h2>Water Intake</h2>
+                <p>Track your daily hydration</p>
+                <div class="water-glasses-container">
+                    <div class="water-glasses">
+                        <div class="water-glass" data-index="1"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="2"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="3"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="4"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="5"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="6"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="7"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="8"><i class="fas fa-glass-water"></i></div>
+                        <div class="water-glass" data-index="9"><i class="fas fa-glass-water"></i></div>
+                    </div>
+                    <div class="water-progress-container">
+                        <div class="water-progress-bar" id="water-progress"></div>
+                    </div>
+                    <p class="water-count">0/9 glasses</p>
+                </div>
+                <button class="view-calendar-btn">View Calendar</button>
+            </div>
+
+            <div class="habit-box" id="minerals-box">
+                <div class="habit-icon">
+                    <i class="fas fa-tablets"></i>
+                </div>
+                <h2>Minerals & Ores</h2>
+                <p class="box-description">Essential minerals and their sources</p>
+                <div class="minerals-header">
+                    <span class="mineral-name">Mineral</span>
+                    <span class="mineral-source">Food Sources</span>
+                    <span class="mineral-check-header">✓</span>
+                </div>
+                <div class="minerals-list">
+                    <!-- Top 5 most important minerals for mobile view -->
+                    <div class="mineral-item">
+                        <h3>Calcium</h3>
+                        <p>Dairy, leafy greens, almonds</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="calcium-check">
+                            <label for="calcium-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/calcite-1-s.jpg" alt="Calcium ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Calcium is found in calcite and limestone ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item">
+                        <h3>Iron</h3>
+                        <p>Red meat, beans, spinach</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="iron-check">
+                            <label for="iron-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/hematite-1-s.jpg" alt="Iron ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Iron is found in hematite and magnetite ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item">
+                        <h3>Magnesium</h3>
+                        <p>Nuts, seeds, whole grains</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="magnesium-check">
+                            <label for="magnesium-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/magnesite-1-s.jpg" alt="Magnesium ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Magnesium is found in magnesite and dolomite ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item">
+                        <h3>Zinc</h3>
+                        <p>Oysters, meat, legumes</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="zinc-check">
+                            <label for="zinc-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/sphalerite-1-s.jpg" alt="Zinc ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Zinc is found in sphalerite and smithsonite ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item">
+                        <h3>Potassium</h3>
+                        <p>Bananas, potatoes, avocados</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="potassium-check">
+                            <label for="potassium-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/sylvite-1-s.jpg" alt="Potassium ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Potassium is found in sylvite and carnallite ores</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional minerals (hidden on mobile by default) -->
+                    <div class="mineral-item additional-mineral">
+                        <h3>Selenium</h3>
+                        <p>Brazil nuts, fish, eggs</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="selenium-check">
+                            <label for="selenium-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/selenite-1-s.jpg" alt="Selenium ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Selenium is found in selenite and chalcopyrite ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item additional-mineral">
+                        <h3>Copper</h3>
+                        <p>Shellfish, nuts, seeds</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="copper-check">
+                            <label for="copper-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/chalcopyrite-1-s.jpg" alt="Copper ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Copper is found in chalcopyrite and malachite ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item additional-mineral">
+                        <h3>Iodine</h3>
+                        <p>Seaweed, fish, dairy</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="iodine-check">
+                            <label for="iodine-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/iodine-1-s.jpg" alt="Iodine ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Iodine is found in caliche and seaweed deposits</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item additional-mineral">
+                        <h3>Manganese</h3>
+                        <p>Whole grains, nuts, leafy vegetables</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="manganese-check">
+                            <label for="manganese-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/pyrolusite-1-s.jpg" alt="Manganese ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Manganese is found in pyrolusite and psilomelane ores</span>
+                        </div>
+                    </div>
+                    <div class="mineral-item additional-mineral">
+                        <h3>Phosphorus</h3>
+                        <p>Dairy, meat, fish, nuts</p>
+                        <div class="mineral-checkbox">
+                            <input type="checkbox" id="phosphorus-check">
+                            <label for="phosphorus-check"></label>
+                        </div>
+                        <div class="mineral-info">
+                            <img src="https://geology.com/minerals/photos/apatite-1-s.jpg" alt="Phosphorus ore" class="mineral-ore-image">
+                            <span class="mineral-tooltip">Phosphorus is found in apatite and phosphorite ores</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="toggle-minerals-btn">Show More Minerals</button>
+            </div>
+
+            <div class="habit-box" id="vitamins-box">
+                <div class="habit-icon">
+                    <i class="fas fa-capsules"></i>
+                </div>
+                <h2>Vitamins</h2>
+                <p class="box-description">Essential vitamins and their food sources</p>
+                <div class="vitamins-header">
+                    <span class="vitamin-name">Vitamin</span>
+                    <span class="vitamin-source">Food Sources</span>
+                    <span class="vitamin-check-header">✓</span>
+                </div>
+                <div class="vitamins-list">
+                    <div class="vitamin-item">
+                        <h3>Vitamin A</h3>
+                        <p>Carrots, sweet potatoes, spinach</p>
+                        <div class="vitamin-checkbox">
+                            <input type="checkbox" id="vitamin-a-check">
+                            <label for="vitamin-a-check"></label>
+                        </div>
+                    </div>
+                    <div class="vitamin-item">
+                        <h3>Vitamin C</h3>
+                        <p>Citrus fruits, berries, peppers</p>
+                        <div class="vitamin-checkbox">
+                            <input type="checkbox" id="vitamin-c-check">
+                            <label for="vitamin-c-check"></label>
+                        </div>
+                    </div>
+                    <div class="vitamin-item">
+                        <h3>Vitamin D</h3>
+                        <p>Sunlight, fatty fish, egg yolks</p>
+                        <div class="vitamin-checkbox">
+                            <input type="checkbox" id="vitamin-d-check">
+                            <label for="vitamin-d-check"></label>
+                        </div>
+                    </div>
+                    <div class="vitamin-item">
+                        <h3>Vitamin E</h3>
+                        <p>Nuts, seeds, vegetable oils</p>
+                        <div class="vitamin-checkbox">
+                            <input type="checkbox" id="vitamin-e-check">
+                            <label for="vitamin-e-check"></label>
+                        </div>
+                    </div>
+                    <div class="vitamin-item">
+                        <h3>Vitamin B12</h3>
+                        <p>Meat, fish, eggs, dairy</p>
+                        <div class="vitamin-checkbox">
+                            <input type="checkbox" id="vitamin-b12-check">
+                            <label for="vitamin-b12-check"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-coach-section">
+            <button id="ai-coach-button" class="glow-button">
+                <span class="button-text">Ask Your AI Health Coach</span>
+                <div class="glow-effect"></div>
+            </button>
+        </div>
+
+        <div id="calendar-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2 id="calendar-title">Tracking Calendar</h2>
+                <div class="calendar-container">
+                    <div class="calendar-navigation">
+                        <button id="prev-month">Previous</button>
+                        <h3 id="current-month">Month Year</h3>
+                        <button id="next-month">Next</button>
+                    </div>
+                    <div class="calendar" id="habit-calendar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ai-coach-modal" class="modal">
+            <div class="modal-content ai-chat-content">
+                <span class="close-button">&times;</span>
+                <h2>AI Health Coach</h2>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-content">
+                                Hello! I'm your AI Health Coach. I'm here to help with any health challenges you're facing. Whether you're struggling to drink enough water, finding it hard to exercise, or need advice on nutrition, sleep, or stress management - just let me know what you're dealing with and I'll provide personalized guidance.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="Type your health question here...">
+                        <button id="send-message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
